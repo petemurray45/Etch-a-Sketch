@@ -12,4 +12,9 @@ body {
 
 .gridPlate {
     background-color: lightgray
+
+}
+
+.plateHovered {
+    background-color: gray;
 }
