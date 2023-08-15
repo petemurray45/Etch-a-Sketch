@@ -1,9 +1,15 @@
 const body = document.body
 
 
-//functions for grid creationg
+// play procedure 
+
 createGrid()
-mouseOver()
+placeEvent()
+
+
+
+//functions for grid creation
+
 
 function createGrid(){
     const container = document.createElement("div");
@@ -18,12 +24,18 @@ function createGrid(){
         container.appendChild(clonedTile);
     
     }
+}
 
+function placeEvent() {
+    let allTiles = document.querySelectorAll('.gridPlate');
+    allTiles.forEach(element => {
+        element.addEventListener('mouseover', changeColor)
+    })
+}
+
+function changeColor() {
+    this.classList.add('plateHovered')
 }
 
 
-function mouseOver(){
-    const gridEvent = document.querySelector("gridPlate")
-    console.log(gridEvent);
- 
-}
+// event listeners
