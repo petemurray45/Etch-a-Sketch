@@ -1,7 +1,22 @@
+
+// body structure
 const body = document.body
+const header = document.createElement('div')
+header.classList.add('header')
+body.appendChild(header)
+const pageContainer = document.createElement("div")
+pageContainer.classList.add("pageContainer")
+body.appendChild(pageContainer)
+
+
+// CSS 
+
+header.innerText = 'Etch-A-Sketch Game'
+
 
 
 // play procedure 
+
 
 createGrid()
 placeEvent()
@@ -12,8 +27,10 @@ placeEvent()
 
 
 function createGrid(){
+
+    
     const container = document.createElement("div");
-    body.appendChild(container);
+    pageContainer.appendChild(container);
     container.classList.add("container");
     const gridPlate = document.createElement("div");
     gridPlate.classList.add("gridPlate");
@@ -37,5 +54,6 @@ function changeColor() {
     this.classList.add('plateHovered')
 }
 
+// screen prompt upon load setting the grid size
 
-// event listeners
+// button at the top of the page that allows user to retart
