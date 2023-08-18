@@ -1,59 +1,46 @@
-
-// body structure
-const body = document.body
-const header = document.createElement('div')
-header.classList.add('header')
-body.appendChild(header)
-const pageContainer = document.createElement("div")
-pageContainer.classList.add("pageContainer")
-body.appendChild(pageContainer)
+// functions
 
 
-// CSS 
-
-header.innerText = 'Etch-A-Sketch Game'
-
-
-
-// play procedure 
-
+const container = document.querySelector('.container');
+const resize = document.querySelector('.reSize');
+const maxWidth = 600;
 
 createGrid()
-placeEvent()
 
 
+function sizePrompt(){
+    size = prompt("What size would you like your grid? Please enter a number between 1-100")
+    if (size >= 100) size = 100;
+}
 
-//functions for grid creation
+function createGrid (){
+    sizePrompt()
 
+    let gridRow;
+    for (let i = 0; i < size; i++){
+        gridRow = document.createElement('div')
+        gridRow.className = 'gridRow'
+        gridRow.id = 'gridRow' + i;
+        container.appendChild(gridRow)
+        
+        
+        let roww = document.getElementById('gridRow' + i)
 
-function createGrid(){
+        for (let k = 0; k < size; k++){
+            gridBox = document.createElement('div')
+            gridBox.className = 'gridBox'
+            gridBox.id = 'gridBox' + k;
+            roww.appendChild(gridBox)
+        }
 
-    
-    const container = document.createElement("div");
-    pageContainer.appendChild(container);
-    container.classList.add("container");
-    const gridPlate = document.createElement("div");
-    gridPlate.classList.add("gridPlate");
-    container.appendChild(gridPlate);
-    let clonedTile;
-    for (let i = 0; i < 16*16-1; i++) {
-        clonedTile = gridPlate.cloneNode();
-        container.appendChild(clonedTile);
-    
     }
+
+    let boxes = document.getElementsByClassName('gridBox')
+    for (let j = 0; j < boxes.length; j++) {
+        boxes[k].style.width = maxWidth/size + 'px';
+        boxes[k].style.height = maxWidth/size + 'px';
+    }
+
+    
 }
 
-function placeEvent() {
-    let allTiles = document.querySelectorAll('.gridPlate');
-    allTiles.forEach(element => {
-        element.addEventListener('mouseover', changeColor)
-    })
-}
-
-function changeColor() {
-    this.classList.add('plateHovered')
-}
-
-// screen prompt upon load setting the grid size
-
-// button at the top of the page that allows user to retart
