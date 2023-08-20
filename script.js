@@ -8,7 +8,6 @@ const maxWidth = 500;
 
 
 
-    
 
 createGrid()
 
@@ -26,7 +25,7 @@ function createGrid (){
     let gridRow;
     for (let i = 0; i < size; i++){
         gridRow = document.createElement('div')
-        gridRow.className = 'gridRow'
+        gridRow.classList.add('gridRow')
         gridRow.id = 'gridRow' + i;
         container.appendChild(gridRow)
         
@@ -35,11 +34,10 @@ function createGrid (){
 
         for (let k = 0; k < size; k++){
             let gridBox = document.createElement('div')
-            gridBox.className = 'gridBox'
+            gridBox.classList.add('gridBox')
             gridBox.id = 'gridBox' + k;
+            gridBox.addEventListener('mouseover', changeColor)
             roww.appendChild(gridBox)
-            gridBox.addEventListener('mouseover', changeColor())
-
             
         }
 
@@ -61,13 +59,21 @@ function createGrid (){
 }
 
 
-function changeColor(){
+function changeColor(e){
     
     let colors = ['red', 'white', 'blue']
 
     let choice = colors[Math.floor(Math.random() * colors.length)];
 
-    gridBox.style.backgroundColor = choice;
+    Object.assign(e.target.style, {
+        backgroundColor : choice
+    })
+
+
+
+
+
+
 
 
 
