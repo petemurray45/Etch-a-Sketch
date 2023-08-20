@@ -3,9 +3,16 @@
 
 const container = document.querySelector('.container');
 const resize = document.querySelector('.reSize');
-const maxWidth = 600;
+const maxWidth = 500;
+
+
+
+
+    
 
 createGrid()
+
+
 
 
 function sizePrompt(){
@@ -27,20 +34,43 @@ function createGrid (){
         let roww = document.getElementById('gridRow' + i)
 
         for (let k = 0; k < size; k++){
-            gridBox = document.createElement('div')
+            let gridBox = document.createElement('div')
             gridBox.className = 'gridBox'
             gridBox.id = 'gridBox' + k;
             roww.appendChild(gridBox)
+            gridBox.addEventListener('mouseover', changeColor())
+
+            
         }
 
     }
 
     let boxes = document.getElementsByClassName('gridBox')
+    
+    
     for (let j = 0; j < boxes.length; j++) {
-        boxes[k].style.width = maxWidth/size + 'px';
-        boxes[k].style.height = maxWidth/size + 'px';
+        boxes[j].style.width = maxWidth/size + 'px';
+        boxes[j].style.height = maxWidth/size + 'px';
     }
 
+
     
+
+    
+
 }
 
+
+function changeColor(){
+    
+    let colors = ['red', 'white', 'blue']
+
+    let choice = colors[Math.floor(Math.random() * colors.length)];
+
+    gridBox.style.backgroundColor = choice;
+
+
+
+
+
+}
