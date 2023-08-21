@@ -1,18 +1,24 @@
-// functions
-
+// DOM selectors
 
 const container = document.querySelector('.container');
-const resize = document.querySelector('.reSize');
 const maxWidth = 500;
-
-
+const resizeBtn = document.getElementById('resize')
 
 
 
 createGrid()
 
 
+// event listeners
 
+resizeBtn.addEventListener('click', () => {
+    removeGrid()
+    createGrid()
+})
+
+
+
+// functions
 
 function sizePrompt(){
     size = prompt("What size would you like your grid? Please enter a number between 1-100")
@@ -36,7 +42,6 @@ function createGrid (){
             let gridBox = document.createElement('div')
             gridBox.classList.add('gridBox')
             gridBox.id = 'gridBox' + k;
-            gridBox.addEventListener('mouseover', changeColor)
             roww.appendChild(gridBox)
             
         }
@@ -51,32 +56,30 @@ function createGrid (){
         boxes[j].style.height = maxWidth/size + 'px';
     }
 
-
-    
-
+    const gridEvent = document.querySelectorAll('.gridBox')
+    gridEvent.forEach(gridEvent => {
+        gridEvent.addEventListener('mouseover', () => {
+            gridEvent.style.backgroundColor = 'black';
+            
+        })
+    })
     
 
 }
 
-
-function changeColor(e){
-    
-    let colors = ['red', 'white', 'blue']
-
-    let choice = colors[Math.floor(Math.random() * colors.length)];
-
-    Object.assign(e.target.style, {
-        backgroundColor : choice
-    })
+function removeGrid (){
+    while(container.firstChild){
+        container.removeChild(container.firstChild)
+    }
+}
 
 
+function changeColor(){
+    let colors = ['red', 'yellow', 'blue', 'green', 'purple', 'black']
+    let choice = colors[Math.floor(Math.random()*colors.length)]
 
 
 
 
-
-
-
-
-
+    return choice;
 }
