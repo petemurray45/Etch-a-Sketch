@@ -3,6 +3,7 @@
 const container = document.querySelector('.container');
 const maxWidth = 500;
 const resizeBtn = document.getElementById('resize')
+const clearBtn = document.getElementById('clearButton')
 
 
 
@@ -16,6 +17,9 @@ resizeBtn.addEventListener('click', () => {
     createGrid()
 })
 
+clearBtn.addEventListener('click', () => {
+    clearGrid()
+} )
 
 
 // functions
@@ -26,7 +30,7 @@ function sizePrompt(){
 }
 
 function createGrid (){
-    sizePrompt()
+   sizePrompt()
 
     let gridRow;
     for (let i = 0; i < size; i++){
@@ -59,9 +63,9 @@ function createGrid (){
     const gridEvent = document.querySelectorAll('.gridBox')
     gridEvent.forEach(gridEvent => {
         gridEvent.addEventListener('mouseover', () => {
-            gridEvent.style.backgroundColor = 'black';
-            
+            gridEvent.style.backgroundColor = changeColor();
         })
+        
     })
     
 
@@ -77,9 +81,49 @@ function removeGrid (){
 function changeColor(){
     let colors = ['red', 'yellow', 'blue', 'green', 'purple', 'black']
     let choice = colors[Math.floor(Math.random()*colors.length)]
-
-
-
-
     return choice;
+    
+}
+
+function clearGrid(){
+
+
+    removeGrid()
+
+    let gridRow;
+    for (let i = 0; i < 10; i++){
+        gridRow = document.createElement('div')
+        gridRow.classList.add('gridRow')
+        gridRow.id = 'gridRow' + i;
+        container.appendChild(gridRow)
+        
+        
+        let roww = document.getElementById('gridRow' + i)
+
+        for (let k = 0; k < 10; k++){
+            let gridBox = document.createElement('div')
+            gridBox.classList.add('gridBox')
+            gridBox.id = 'gridBox' + k;
+            roww.appendChild(gridBox)
+            
+        }
+
+    }
+
+    let boxes = document.getElementsByClassName('gridBox')
+    
+    
+    for (let j = 0; j < boxes.length; j++) {
+        boxes[j].style.width = maxWidth/10 + 'px';
+        boxes[j].style.height = maxWidth/10 + 'px';
+    }
+
+    const gridEvent = document.querySelectorAll('.gridBox')
+    gridEvent.forEach(gridEvent => {
+        gridEvent.addEventListener('mouseover', () => {
+            gridEvent.style.backgroundColor = changeColor();
+        })
+        
+    })
+
 }
